@@ -1,0 +1,36 @@
+===============================================================================
+    Soare Radu-Georgian
+    336CB
+    Tema3 - LFA
+==============================================================================
+
+Pasi de implementare:
+
+1. Regex-ul a fost citit ca string din fisier.
+
+2. S-a adaugat in regex simbolul "+" ce marcheaza concatenarea:
+ex : ab -> a+b
+
+3. S-a iterat prin expresia regulata si s-a adaugat intr-o stiva fiecare
+caracter din regex.
+
+4. Varful stivei a fost inspectat, iar atunci cand se gaseste un operator,
+acesta formeaza o noua expresie:
+ex: stiva = [(, a, )] -> un obiect de tip Paranteza ce contine un caracter
+- prelucrarea stivei s-a repetat pana cand in aceasta a ramas un singur
+element si anume radacina arborelui de parsare.
+
+5. S-a creat o instanta de NFA in care tranzitiile erau reprezentate de
+expresii:
+ex: [st_initiala, <Concatenare>] -> st_finala
+- initial NFA-ul contine o singura tranzitie, care se face pe radacina
+arborelui de parsare.
+- se itereaza prin lista de tranzitii si se expandeaza fiecare dintre acestea
+in functie de copiii din arborele de parsare pana cand se ajunge
+la nivel de caracter.
+ex: {[0, Union] = 1} -> {[0, Union.left] = 1; [0, Union.right] = 1} -> ...
+- in functie de tipul la care o expresie trebuie expandata, se adauga stari
+si tranzitii pentru a updata NFA-ul.
+
+6. S-a refolosit codul din Tema2 pentru a converti NFA-ul rezultat din
+regex, intr-un DFA.
